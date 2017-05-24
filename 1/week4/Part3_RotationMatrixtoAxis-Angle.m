@@ -14,12 +14,21 @@ function [axang] = rotm2axang(R)
        
     else if (theta == pi || theta == -pi)
         vec = zeros(2,3);
-        vec(1,1) = sqrt(abs((R(1,1)+1)/2));
-        vec(1,2) = sqrt(abs((R(2,2)+1)/2));
-        vec(1,3) = sqrt(abs((R(3,3)+1)/2));
-        vec(2,1) = -sqrt(abs((R(1,1)+1)/2));
-        vec(2,2) = -sqrt(abs((R(2,2)+1)/2));
-        vec(2,3) = -sqrt(abs((R(3,3)+1)/2));
+        if (R(2,3)>0)
+        vec(1,1) = sqrt(((R(1,1)+1)/2));
+        vec(1,2) = sqrt(((R(2,2)+1)/2));
+        vec(1,3) = sqrt(((R(3,3)+1)/2));
+        vec(2,1) = -sqrt(((R(1,1)+1)/2));
+        vec(2,2) = -sqrt(((R(2,2)+1)/2));
+        vec(2,3) = -sqrt(((R(3,3)+1)/2));
+        else
+        vec(1,1) = sqrt(((R(1,1)+1)/2));
+        vec(1,2) = sqrt(((R(2,2)+1)/2));
+        vec(1,3) = -sqrt(((R(3,3)+1)/2));
+        vec(2,1) = -sqrt(((R(1,1)+1)/2));
+        vec(2,2) = -sqrt(((R(2,2)+1)/2));
+        vec(2,3) = sqrt(((R(3,3)+1)/2));
+        end
         theta = [theta;theta];
         
     else
